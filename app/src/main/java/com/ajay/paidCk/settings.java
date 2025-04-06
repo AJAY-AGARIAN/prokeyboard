@@ -138,20 +138,11 @@ public class settings extends AppCompatActivity {
         CheckBox vibrate = (CheckBox) findViewById(R.id.vibrate);
         SeekBar size = (SeekBar) findViewById(R.id.seekBar);
 
-        if (setPreview == 1)
-            preview.setChecked(true);
-        else
-            preview.setChecked(false);
+        preview.setChecked(setPreview == 1);
 
-        if (setSound == 1)
-            sound.setChecked(true);
-        else
-            sound.setChecked(false);
+        sound.setChecked(setSound == 1);
 
-        if (setVibrator == 1)
-            vibrate.setChecked(true);
-        else
-            vibrate.setChecked(false);
+        vibrate.setChecked(setVibrator == 1);
 
         size.setProgress(setSize);
     }

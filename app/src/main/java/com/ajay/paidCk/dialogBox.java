@@ -36,13 +36,9 @@ public class dialogBox extends Dialog implements
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.continueBtn:
-                c.finish();
-                dismiss();
-                break;
-            default:
-                break;
+        if (v.getId() == R.id.continueBtn) {
+            c.finish();
+            dismiss();
         }
         dismiss();
     }

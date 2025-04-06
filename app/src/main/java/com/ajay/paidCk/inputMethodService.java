@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,12 +32,9 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
     public View onCreateInputView() {
 
         SharedPreferences pre = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE);
-        int layout=pre.getInt("RADIO_INDEX_LAYOUT",0);
+        int layout = pre.getInt("RADIO_INDEX_LAYOUT", 0);
         //color
         switch (pre.getInt("RADIO_INDEX_COLOUR", 0)) {
-            case 0:
-                keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboardview, null);
-                break;
             case 1:
                 keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.whitekeyboardview, null);
                 break;
@@ -63,7 +61,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
         int size = pre.getInt("SIZE", 1);
         //if (primaryCode==-1||primaryCode==-5||primaryCode==-4||primaryCode==9)
         //keyboardView.setBackgroundResource(R.drawable.spacebtn);
-        if(layout==0) {
+        if (layout == 0) {
             if (size == 0) {
                 keyboard = new Keyboard(this, R.xml.keyslayout);
             } else if (size == 1) {
@@ -71,7 +69,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
             } else if (size == 2) {
                 keyboard = new Keyboard(this, R.xml.keyboardlarge);
             } else keyboard = new Keyboard(this, R.xml.keyboardmedium);
-        }else if(layout==1){
+        } else if (layout == 1) {
             if (size == 0) {
                 keyboard = new Keyboard(this, R.xml.dvoraksmall);
             } else if (size == 1) {
@@ -79,7 +77,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
             } else if (size == 2) {
                 keyboard = new Keyboard(this, R.xml.dvoraklarge);
             }
-        } else if(layout==2){
+        } else if (layout == 2) {
             if (size == 0) {
                 keyboard = new Keyboard(this, R.xml.azertysmall);
             } else if (size == 1) {
@@ -87,7 +85,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
             } else if (size == 2) {
                 keyboard = new Keyboard(this, R.xml.azertylarge);
             }
-        } else if(layout==3){
+        } else if (layout == 3) {
             if (size == 0) {
                 keyboard = new Keyboard(this, R.xml.qwertzsmall);
             } else if (size == 1) {
@@ -119,11 +117,11 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
     public void onKey(int primaryCode, int[] keyCodes) {
         SharedPreferences pre = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE);
         int size = pre.getInt("SIZE", 1);
-        int layout=pre.getInt("RADIO_INDEX_LAYOUT",0);
+        int layout = pre.getInt("RADIO_INDEX_LAYOUT", 0);
 
         InputConnection inputConnection = getCurrentInputConnection();
         if (inputConnection != null) {
-            switch(primaryCode) {
+            switch (primaryCode) {
                 case Keyboard.KEYCODE_DELETE:
                     sendDownUpKeyEvents(KeyEvent.KEYCODE_DEL);
                     break;
@@ -139,8 +137,8 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                     /*Intent intent2=new Intent(this,settings.class);
                     intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent2);*/
-                    if (keyboard!= null) {
-                        if(layout==0) {
+                    if (keyboard != null) {
+                        if (layout == 0) {
                             if (size == 0) {
                                 keyboard = new Keyboard(this, R.xml.arrows);
                             } else if (size == 1) {
@@ -148,8 +146,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                             } else if (size == 2) {
                                 keyboard = new Keyboard(this, R.xml.arrowslarge);
                             }
-                        }
-                        else if(layout==1){
+                        } else if (layout == 1) {
                             if (size == 0) {
                                 keyboard = new Keyboard(this, R.xml.dvorakarrowsmall);
                             } else if (size == 1) {
@@ -157,8 +154,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                             } else if (size == 2) {
                                 keyboard = new Keyboard(this, R.xml.dvoraklarge);
                             }
-                        }
-                        else if(layout==2){
+                        } else if (layout == 2) {
                             if (size == 0) {
                                 keyboard = new Keyboard(this, R.xml.azertyarrowsmall);
                             } else if (size == 1) {
@@ -166,7 +162,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                             } else if (size == 2) {
                                 keyboard = new Keyboard(this, R.xml.azertyarrowlarge);
                             }
-                        }else if(layout==3){
+                        } else if (layout == 3) {
                             if (size == 0) {
                                 keyboard = new Keyboard(this, R.xml.qwertzarrowsmall);
                             } else if (size == 1) {
@@ -181,7 +177,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                     break;
                 case 5004:
                     if (keyboard != null) {
-                        if(layout==0) {
+                        if (layout == 0) {
                             if (size == 0) {
                                 keyboard = new Keyboard(this, R.xml.keyslayout);
                             } else if (size == 1) {
@@ -189,8 +185,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                             } else if (size == 2) {
                                 keyboard = new Keyboard(this, R.xml.keyboardlarge);
                             }
-                        }
-                        else  if(layout==1){
+                        } else if (layout == 1) {
                             if (size == 0) {
                                 keyboard = new Keyboard(this, R.xml.dvoraksmall);
                             } else if (size == 1) {
@@ -198,8 +193,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                             } else if (size == 2) {
                                 keyboard = new Keyboard(this, R.xml.dvoraklarge);
                             }
-                        }
-                        else  if(layout==2){
+                        } else if (layout == 2) {
                             if (size == 0) {
                                 keyboard = new Keyboard(this, R.xml.azertysmall);
                             } else if (size == 1) {
@@ -207,7 +201,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                             } else if (size == 2) {
                                 keyboard = new Keyboard(this, R.xml.azertylarge);
                             }
-                        } else if(layout==3){
+                        } else if (layout == 3) {
                             if (size == 0) {
                                 keyboard = new Keyboard(this, R.xml.qwertzsmall);
                             } else if (size == 1) {
@@ -220,7 +214,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                     }
                     break;
                 case 5006:
-                    Intent intent2=new Intent(this,settings.class);
+                    Intent intent2 = new Intent(this, settings.class);
                     intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //keyboardView.closing();
                     startActivity(intent2);
@@ -237,10 +231,10 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                 case 5003:
                     sendDownUpKeyEvents(KeyEvent.KEYCODE_DPAD_RIGHT);
                     break;
-                default :
+                default:
                     char code = (char) primaryCode;
-                    if(Character.isLetter(code) && caps){
-                       code = Character.toUpperCase(code);
+                    if (Character.isLetter(code) && caps) {
+                        code = Character.toUpperCase(code);
                     }
                     inputConnection.commitText(String.valueOf(code), 1);
             }
@@ -264,14 +258,15 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
         if (vibratorOn) {
 
             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            if(vibrator!=null)
+            if (vibrator != null)
                 vibrator.vibrate(10);
         }
-            if (primaryCode == -1 || primaryCode == -5 || primaryCode == -4 || primaryCode == 9 || primaryCode == 32 || primaryCode == 5001
-                    || primaryCode == 5000 || primaryCode == 5002 || primaryCode == 5003 || primaryCode == 5004 || primaryCode == 5005 || primaryCode == 5006) {
-                keyboardView.setPreviewEnabled(false);
-            } else if (pre.getInt("PREVIEW", 1) == 1) {
-                keyboardView.setPreviewEnabled(true); }
+        if (primaryCode == -1 || primaryCode == -5 || primaryCode == -4 || primaryCode == 9 || primaryCode == 32 || primaryCode == 5001
+                || primaryCode == 5000 || primaryCode == 5002 || primaryCode == 5003 || primaryCode == 5004 || primaryCode == 5005 || primaryCode == 5006) {
+            keyboardView.setPreviewEnabled(false);
+        } else if (pre.getInt("PREVIEW", 1) == 1) {
+            keyboardView.setPreviewEnabled(true);
+        }
         if (LongPressTimer != null)
             LongPressTimer.cancel();
 
@@ -315,15 +310,15 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
     @Override
     public void onRelease(int primaryCode) {
         if (LongPressTimer != null)
-             LongPressTimer.cancel();
+            LongPressTimer.cancel();
 
     }
 
     private void onKeyLongPress(int keyCode) {
-        if(keyCode == 32) {
+        if (keyCode == 32) {
             InputMethodManager imm = (InputMethodManager)
                     getSystemService(Context.INPUT_METHOD_SERVICE);
-            if(imm!=null)
+            if (imm != null)
                 imm.showInputMethodPicker();
         }
     }
@@ -346,38 +341,36 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
     @Override
     public void swipeDown() {
         SharedPreferences pre = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE);
-        int color=pre.getInt("RADIO_INDEX_COLOUR", 0);
-        int layout=pre.getInt("RADIO_INDEX_LAYOUT",0);
+        int color = pre.getInt("RADIO_INDEX_COLOUR", 0);
+        int layout = pre.getInt("RADIO_INDEX_LAYOUT", 0);
         if (keyboard != null) {
-            if(layout==0) {
+            if (layout == 0) {
                 keyboard = new Keyboard(this, R.xml.quertyonly);
                 keyboardView.setKeyboard(keyboard);
-            }
-            else if (layout==1){
+            } else if (layout == 1) {
                 keyboard = new Keyboard(this, R.xml.dvorakonly);
                 keyboardView.setKeyboard(keyboard);
-            }
-            else if (layout==2){
+            } else if (layout == 2) {
                 keyboard = new Keyboard(this, R.xml.azertyonly);
                 keyboardView.setKeyboard(keyboard);
+            } else if (layout == 3) {
+                keyboard = new Keyboard(this, R.xml.qwertzonly);
+                keyboardView.setKeyboard(keyboard);
             }
-             else if (layout==3){
-                 keyboard = new Keyboard(this, R.xml.qwertzonly);
-                 keyboardView.setKeyboard(keyboard);
-             }
         }
         keyboardView.setKeyboard(keyboard);
     }
+
     @Override
     public void swipeUp() {
 
         SharedPreferences pre = getSharedPreferences("MY_SHARED_PREF", MODE_PRIVATE);
         int size = pre.getInt("SIZE", 1);
-        int color=pre.getInt("RADIO_INDEX_COLOUR", 0);
-        int layout=pre.getInt("RADIO_INDEX_LAYOUT",0);
+        int color = pre.getInt("RADIO_INDEX_COLOUR", 0);
+        int layout = pre.getInt("RADIO_INDEX_LAYOUT", 0);
 
         if (keyboard != null) {
-            if(layout==0) {
+            if (layout == 0) {
                 if (size == 0) {
                     keyboard = new Keyboard(this, R.xml.keyslayout);
                 } else if (size == 1) {
@@ -387,9 +380,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                 } else {
                     keyboard = new Keyboard(this, R.xml.keyboardmedium);
                 }
-            }
-            else if(layout==1)
-            {
+            } else if (layout == 1) {
                 if (size == 0) {
                     keyboard = new Keyboard(this, R.xml.dvoraksmall);
                 } else if (size == 1) {
@@ -397,9 +388,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                 } else if (size == 2) {
                     keyboard = new Keyboard(this, R.xml.dvoraklarge);
                 }
-            }
-            else if(layout==2)
-            {
+            } else if (layout == 2) {
                 if (size == 0) {
                     keyboard = new Keyboard(this, R.xml.azertysmall);
                 } else if (size == 1) {
@@ -407,7 +396,7 @@ public class inputMethodService extends InputMethodService implements KeyboardVi
                 } else if (size == 2) {
                     keyboard = new Keyboard(this, R.xml.azertylarge);
                 }
-            }else if(layout==3){
+            } else if (layout == 3) {
                 if (size == 0) {
                     keyboard = new Keyboard(this, R.xml.qwertzsmall);
                 } else if (size == 1) {
